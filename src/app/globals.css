@@ -1,26 +1,96 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f4f0;
+  --card: #ffffff;
+  --primary: #1a1a18;
+  --secondary: #52575e;
+  --caption: #8b939f;
+  --accent: #7a8f5e;
+  --olive-dark: #4a5538;
+  --sage: #dde5d4;
+  --border: #e2e0da;
+  --dark: #121210;
+  --warm: #c9a96e;
+  --terracotta: #b86b4a;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-caption: var(--caption);
+  --color-accent: var(--accent);
+  --color-olive-dark: var(--olive-dark);
+  --color-sage: var(--sage);
+  --color-border: var(--border);
+  --color-dark: var(--dark);
+  --color-warm: var(--warm);
+  --color-terracotta: var(--terracotta);
+  --font-heading: var(--font-poppins);
+  --font-body: var(--font-montserrat);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--primary);
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-poppins), system-ui, sans-serif;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out both;
+}
+
+.slide-gradient-dark {
+  background: linear-gradient(160deg, #121210 0%, #1a1c18 50%, #141612 100%);
+}
+
+.slide-gradient-light {
+  background: linear-gradient(180deg, #f5f4f0 0%, #eeede8 100%);
+}
+
+.wave-divider {
+  clip-path: ellipse(80% 100% at 20% 100%);
 }
