@@ -4,9 +4,12 @@ import HighlightBox from "@/components/HighlightBox";
 import { contactBackground } from "@/data/assets";
 import { studio } from "@/data/portfolio";
 
+const whatsappUrl =
+  "https://api.whatsapp.com/send/?phone=918799301927&text=Hi%20Jatin,%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project%20with%20you.%20Please%20let%20me%20know%20a%20good%20time%20to%20connect.%20Thank%20you!&type=phone_number&app_absent=0";
+
 const contactItems = [
-  { icon: Mail, label: "Email", value: studio.contact.email },
-  { icon: Phone, label: "Phone", value: studio.contact.phone },
+  { icon: Mail, label: "Email", value: studio.contact.email, href: `mailto:${studio.contact.email}` },
+  { icon: Phone, label: "Phone", value: studio.contact.phone, href: whatsappUrl },
   { icon: MapPin, label: "Location", value: studio.contact.location },
 ];
 
@@ -35,7 +38,18 @@ export default function ContactPage() {
                     {item.label}
                   </p>
                   <p className="font-heading text-sm font-semibold text-card md:text-base">
-                    {item.value}
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        className="transition-colors hover:text-sage"
+                        target={item.href.startsWith("http") ? "_blank" : undefined}
+                        rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      >
+                        {item.value}
+                      </a>
+                    ) : (
+                      item.value
+                    )}
                   </p>
                 </div>
               </li>
