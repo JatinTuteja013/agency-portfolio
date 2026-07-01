@@ -16,31 +16,26 @@ export default function ProcessPage() {
   return (
     <SlideShell path="/process" theme="dark">
       <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-6 py-8 md:px-12 md:py-12">
-        <SectionHeading title="Our Process" dark className="mb-12 animate-fade-up" />
+        <SectionHeading title="Our Process" dark className="mb-10 animate-fade-up" />
 
-        <div className="relative space-y-0">
-          <div className="absolute bottom-8 left-7 top-8 w-px bg-accent/40 md:left-8" />
-
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {processSteps.map((step, i) => {
             const Icon = stepIcons[i] ?? Search;
             return (
               <div
                 key={step.step}
-                className="animate-fade-up relative flex items-start gap-6 pb-10 last:pb-0"
-                style={{ animationDelay: `${i * 0.08}s` }}
+                className="animate-fade-up flex items-start gap-4"
+                style={{ animationDelay: `${i * 0.05}s` }}
               >
-                <div className="relative z-10 flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-full border-2 border-accent bg-olive-dark shadow-lg">
+                <span className="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-full border-2 border-accent bg-olive-dark text-card shadow-lg">
                   <Icon className="mb-0.5 h-4 w-4 text-sage" strokeWidth={1.5} />
-                  <span className="font-heading text-[10px] font-bold text-card">
-                    {step.step}
-                  </span>
-                </div>
-
-                <div className="pt-2">
-                  <h3 className="font-heading text-lg font-bold text-card md:text-xl">
+                  <span className="font-heading text-[10px] font-bold">{step.step}</span>
+                </span>
+                <div>
+                  <h3 className="font-heading text-sm font-bold text-card md:text-base">
                     {step.title}
                   </h3>
-                  <p className="mt-1 max-w-lg text-sm leading-relaxed text-caption">
+                  <p className="mt-1 text-xs leading-relaxed text-caption">
                     {step.description}
                   </p>
                 </div>
