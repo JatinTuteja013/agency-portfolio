@@ -57,7 +57,7 @@ export default function CaseStudyPage({ brand }: { brand: BrandProfile }) {
       </div>
 
       <div className="grid flex-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
-        <div className="animate-fade-up space-y-4" style={{ animationDelay: "0.1s" }}>
+        <div className="order-2 animate-fade-up space-y-4 lg:order-1" style={{ animationDelay: "0.1s" }}>
           <DetailCard title="Challenge" accentColor={brand.accentColor}>
             <p className="text-sm leading-relaxed text-secondary md:text-base">
               {brand.challenge}
@@ -106,7 +106,7 @@ export default function CaseStudyPage({ brand }: { brand: BrandProfile }) {
           </Link>
         </div>
 
-        <div className="flex justify-center animate-fade-up" style={{ animationDelay: "0.2s" }}>
+        <div className="order-1 flex justify-center animate-fade-up lg:order-2" style={{ animationDelay: "0.2s" }}>
           <PhoneCarousel
             images={brand.images}
             label={brand.mockupLabel}

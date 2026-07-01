@@ -39,6 +39,11 @@ export default function SiteNav({ light = false }: SiteNavProps) {
           : "text-caption hover:text-white"
     }`;
 
+  const handleMobileLinkClick = () => {
+    setMobileOpen(false);
+    setBrandsOpen(false);
+  };
+
   const brandLinkClass = (active: boolean) =>
     light
       ? active
@@ -151,6 +156,7 @@ export default function SiteNav({ light = false }: SiteNavProps) {
             <Link
               key={link.path}
               href={link.path}
+              onClick={handleMobileLinkClick}
               className={`block px-4 py-2.5 text-sm transition-colors ${
                 pathname === link.path
                   ? light
@@ -192,6 +198,7 @@ export default function SiteNav({ light = false }: SiteNavProps) {
             <div className="pb-2">
               <Link
                 href="/brands"
+                onClick={handleMobileLinkClick}
                 className={light ? "block px-6 py-2 text-sm font-semibold text-black" : "block px-6 py-2 text-sm text-black"}
               >
                 All Brands
@@ -203,6 +210,7 @@ export default function SiteNav({ light = false }: SiteNavProps) {
                   <Link
                     key={brand.slug}
                     href={brandPath}
+                    onClick={handleMobileLinkClick}
                     className={
                       light
                         ? active

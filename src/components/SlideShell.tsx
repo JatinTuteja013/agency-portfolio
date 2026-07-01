@@ -76,15 +76,6 @@ export default function SlideShell({
       <SlideKeyboardNav path={path} />
 
       <header className="relative z-20 flex items-center justify-between gap-4 px-6 py-5 md:px-12 md:py-6">
-        <Link
-          href="/"
-          className={`shrink-0 font-heading text-sm font-bold tracking-tight md:text-base ${
-            hasBackground || isDark ? "text-card hover:text-sage" : "text-primary hover:text-accent"
-          } hidden sm:inline`}
-        >
-          Jatin Tuteja Studio
-        </Link>
-
         <div className="ml-auto lg:ml-0">
           <SiteNav light={!hasBackground && !isDark} />
         </div>

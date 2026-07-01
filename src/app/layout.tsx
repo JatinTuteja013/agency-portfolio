@@ -15,7 +15,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Jatin Tuteja Studio | Content & Social Media",
+  title: "Studio | Content & Social Media",
   description:
     "We build brands through content that people actually stop scrolling for. Social media management, content strategy, and video production.",
 };
