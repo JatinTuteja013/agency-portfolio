@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { StaticImageData } from "next/image";
+import SiteNav from "@/components/SiteNav";
 import SlideKeyboardNav from "@/components/SlideKeyboardNav";
 import { getAdjacentSlides, slides } from "@/data/slides";
 
@@ -58,8 +59,21 @@ export default function SlideShell({
 
       <SlideKeyboardNav path={path} />
 
-      <header className="relative z-20 flex items-center justify-end px-6 py-5 md:px-12 md:py-6">
-        <div className="flex items-center gap-4">
+      <header className="relative z-20 flex items-center justify-between gap-4 px-6 py-5 md:px-12 md:py-6">
+        <Link
+          href="/"
+          className={`shrink-0 font-heading text-sm font-bold tracking-tight md:text-base ${
+            hasBackground || isDark ? "text-card hover:text-sage" : "text-primary hover:text-accent"
+          } hidden sm:inline`}
+        >
+          Jatin Tuteja Studio
+        </Link>
+
+        <div className="ml-auto lg:ml-0">
+          <SiteNav light={!hasBackground && !isDark} />
+        </div>
+
+        <div className="hidden sm:flex shrink-0 items-center gap-4">
           <span
             className={`font-heading text-sm font-bold tracking-widest ${
               hasBackground || isDark ? "text-sage" : "text-accent"
@@ -80,21 +94,42 @@ export default function SlideShell({
           footerOnLight ? "border-t border-border" : "border-t border-white/10"
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          {prev ? (
-            <Link
-              href={prev.path}
-              className={`group flex items-center gap-2 text-sm font-medium transition-colors ${footerLinkClass}`}
-            >
-              <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-              <span className="hidden sm:inline">{prev.label}</span>
-              <span className="sm:hidden">Prev</span>
-            </Link>
-          ) : (
-            <div />
-          )}
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-4">
+          <div className="flex items-center justify-center gap-6 sm:gap-10">
+            {prev ? (
+              <Link
+                href={prev.path}
+                className={`group flex items-center gap-2 text-sm font-medium transition-colors ${footerLinkClass}`}
+              >
+                <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                <span className="hidden sm:inline">{prev.label}</span>
+                <span className="sm:hidden">Prev</span>
+              </Link>
+            ) : (
+              <span className="invisible flex items-center gap-2 text-sm">
+                <ChevronLeft className="h-4 w-4" />
+                <span>Prev</span>
+              </span>
+            )}
 
-          <nav className="hidden items-center gap-1 md:flex">
+            {next ? (
+              <Link
+                href={next.path}
+                className={`group flex items-center gap-2 text-sm font-medium transition-colors ${footerLinkClass}`}
+              >
+                <span className="hidden sm:inline">{next.label}</span>
+                <span className="sm:hidden">Next</span>
+                <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            ) : (
+              <span className="invisible flex items-center gap-2 text-sm">
+                <span>Next</span>
+                <ChevronRight className="h-4 w-4" />
+              </span>
+            )}
+          </div>
+
+          <nav className="flex items-center justify-center gap-1">
             {slides.map((slide) => (
               <Link
                 key={slide.slug}
@@ -112,19 +147,6 @@ export default function SlideShell({
               />
             ))}
           </nav>
-
-          {next ? (
-            <Link
-              href={next.path}
-              className={`group flex items-center gap-2 text-sm font-medium transition-colors ${footerLinkClass}`}
-            >
-              <span className="hidden sm:inline">{next.label}</span>
-              <span className="sm:hidden">Next</span>
-              <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          ) : (
-            <div />
-          )}
         </div>
       </footer>
     </div>
