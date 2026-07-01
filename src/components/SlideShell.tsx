@@ -45,15 +45,31 @@ export default function SlideShell({
     >
       {hasBackground && (
         <>
-          <Image
-            src={backgroundImage!}
-            alt=""
-            fill
-            className="pointer-events-none object-cover"
-            priority={path === "/"}
-            sizes="100vw"
-          />
-          <div className={`pointer-events-none absolute inset-0 ${backgroundOverlayClass}`} />
+          {((path && path.startsWith("/case-studies")) || path === "/brands") ? (
+            <>
+              <Image
+                src={backgroundImage!}
+                alt=""
+                fill
+                className="hidden sm:block pointer-events-none object-cover"
+                priority={path === "/"}
+                sizes="100vw"
+              />
+              <div className={`hidden sm:block pointer-events-none absolute inset-0 ${backgroundOverlayClass}`} />
+            </>
+          ) : (
+            <>
+              <Image
+                src={backgroundImage!}
+                alt=""
+                fill
+                className="pointer-events-none object-cover"
+                priority={path === "/"}
+                sizes="100vw"
+              />
+              <div className={`pointer-events-none absolute inset-0 ${backgroundOverlayClass}`} />
+            </>
+          )}
         </>
       )}
 
