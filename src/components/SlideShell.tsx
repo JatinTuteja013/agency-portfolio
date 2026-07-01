@@ -25,6 +25,7 @@ export default function SlideShell({
 }: SlideShellProps) {
   const { prev, next, current } = getAdjacentSlides(path);
   const isDark = theme === "dark";
+  const isBrandRoute = path === "/brands" || path.startsWith("/case-studies");
   const hasBackground = Boolean(backgroundImage);
   const footerOnLight =
     (!hasBackground && !isDark) ||
@@ -77,7 +78,7 @@ export default function SlideShell({
 
       <header className="relative z-20 flex items-center justify-between gap-4 px-6 py-5 md:px-12 md:py-6">
         <div className="ml-auto lg:ml-0">
-          <SiteNav light={!hasBackground && !isDark} />
+          <SiteNav light={!hasBackground && !isDark} iconDark={isBrandRoute} />
         </div>
 
         <div className="hidden sm:flex shrink-0 items-center gap-4">

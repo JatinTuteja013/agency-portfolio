@@ -17,9 +17,10 @@ const navLinks = [
 
 type SiteNavProps = {
   light?: boolean;
+  iconDark?: boolean;
 };
 
-export default function SiteNav({ light = false }: SiteNavProps) {
+export default function SiteNav({ light = false, iconDark = false }: SiteNavProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [brandsOpen, setBrandsOpen] = useState(false);
@@ -40,6 +41,11 @@ export default function SiteNav({ light = false }: SiteNavProps) {
     }`;
 
   const handleMobileLinkClick = () => {
+    setMobileOpen(false);
+    setBrandsOpen(false);
+  };
+
+  const closeMenu = () => {
     setMobileOpen(false);
     setBrandsOpen(false);
   };
@@ -76,13 +82,13 @@ export default function SiteNav({ light = false }: SiteNavProps) {
           : "border-white/10 bg-olive-dark"
       }`}
     >
-      <Link href="/brands" className={brandLinkClass(pathname === "/brands")}>All Brands</Link>
+      <Link href="/brands" onClick={closeMenu} className={brandLinkClass(pathname === "/brands")}>All Brands</Link>
       <div className={`my-1 h-px ${light ? "bg-border" : "bg-white/10"}`} />
       {brandProfiles.map((brand) => {
         const brandPath = `/case-studies/${brand.slug}`;
         const active = pathname === brandPath;
         return (
-          <Link key={brand.slug} href={brandPath} className={brandLinkClass(active)}>
+          <Link key={brand.slug} href={brandPath} onClick={closeMenu} className={brandLinkClass(active)}>
             {brand.name}
           </Link>
         );
@@ -137,7 +143,7 @@ export default function SiteNav({ light = false }: SiteNavProps) {
       <button
         type="button"
         onClick={() => setMobileOpen((o) => !o)}
-        className={`lg:hidden ${light ? "text-primary" : "text-card"}`}
+        className={`lg:hidden ${iconDark ? "text-primary" : light ? "text-primary" : "text-card"}`}
         aria-label={mobileOpen ? "Close menu" : "Open menu"}
       >
         {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
